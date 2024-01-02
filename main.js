@@ -22,7 +22,7 @@ names.then(res =>{
     console.log(err);
 })
 
-})
+});
 
 
 
@@ -36,13 +36,21 @@ myPromise.then(res =>{
     console.log(err);
 });
 
-const mains = fetch("https://api.openweathermap.org/data/2.5/weather?q=baku&APPID=35b1f1d45a7b4378cf2430ae601816be&units=metric")
-mains.then(res =>{
-    const promise = res.json();
-    return promise
-}).then(main).catch(err=>{
-    console.log(err);
-});
+
+btnSrc.addEventListener("click", function(){
+    const cityName = srcLine.value;
+    console.log(cityName);
+    const mains = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=35b1f1d45a7b4378cf2430ae601816be&units=metric`)
+    mains.then(res =>{
+        const promise = res.json();
+        return promise
+    }).then(main).catch(err=>{
+        console.log(err);
+    });
+
+})
+
+
 function main(data){
     const degre = data.main;
     console.log(degre);
